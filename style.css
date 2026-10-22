@@ -1,0 +1,503 @@
+:root {
+  --cream: #f4f0e8;
+  --ink: #203343;
+  --rust: #98432f;
+  --muted: #60625e;
+  --line: #c7b9a6;
+}
+
+* { 
+   box-sizing: 
+   border-box; 
+}
+
+html { 
+   scroll-behavior: 
+   smooth; 
+}
+
+body { 
+   margin: 0; 
+   background: var(--cream); 
+   color: var(--ink); 
+   font-family: Arial, sans-serif; 
+   line-height: 1.7; 
+}
+
+a { 
+   color: inherit; 
+   text-underline-offset: 5px; 
+}
+
+a:hover { 
+   color: var(--rust); 
+}
+
+/* a visible outline helps keyboard users identify the currently focused link */
+a:focus-visible { 
+   outline: 2px solid var(--rust); 
+   outline-offset: 6px; 
+}
+
+h1, h2, h3, .closing { 
+   font-family: Georgia, serif; 
+   font-weight: normal; 
+   line-height: 1.12; 
+}
+
+p { 
+   margin: 0 0 1rem; 
+}
+
+figure { 
+   margin: 0; 
+}
+
+img { 
+   display: block; 
+   width: 100%; 
+   height: auto; 
+}
+
+/* hide the skip link above the viewport until it receives keyboard focus */
+.skip-link { 
+   position: absolute; 
+   left: 16px; top: -100px; 
+   padding: 12px; 
+   background: white; 
+   z-index: 5; 
+}
+
+.skip-link:focus { 
+   top: 16px; 
+}
+
+.page-header { 
+   max-width: 1100px; 
+   margin: auto; 
+   text-align: center; 
+   padding: 75px 24px 85px; 
+}
+
+/* clamp() scales the title with viewport width between 56px and 108px */
+h1 { 
+   font-size: clamp(56px, 8vw, 108px); 
+   letter-spacing: -4px; 
+   margin: 32px 0 24px; 
+}
+
+h1 em { 
+   color: var(--rust); 
+}
+
+.subtitle { 
+   font-family: Georgia, serif; 
+   font-size: 24px; 
+}
+
+.introduction { 
+   max-width: 590px; 
+   margin: 24px auto 30px; 
+   color: var(--muted); 
+   font-size: 15px; 
+}
+
+.scroll-link { 
+   display: inline-block; 
+   text-decoration: none; 
+   font-size: 11px; 
+   text-transform: uppercase; 
+   letter-spacing: 2px; 
+}
+
+.scroll-link span { 
+   display: block; 
+   margin-top: 10px; 
+   font-size: 25px; 
+}
+
+/* timeline */
+.timeline { 
+   position: relative; 
+   max-width: 1040px; 
+   margin: auto; 
+   padding: 0 30px; 
+}
+
+/* the positioned timeline is the reference box for this decorative line.
+   left: 50% locates the middle; translateX(-50%) centres the line’s own width.
+   a dashed border produces the stitched effect without an image */
+.timeline::before { 
+   content: ""; 
+   position: absolute; 
+   left: 50%; 
+   top: 75px; 
+   bottom: 0; 
+   border-left: 2px dashed var(--rust); 
+   transform: translateX(-50%); 
+}
+
+.section-label { 
+   text-align: center; 
+   margin: 0 0 65px; 
+   font-family: Arial, sans-serif; 
+}
+
+/* two equal grid columns leave a central gap for the timeline.
+   position: relative makes each article the reference box for its marker */
+.entry { 
+   position: 
+   relative; 
+   display: grid; 
+   grid-template-columns: 1fr 1fr; 
+   gap: 110px; 
+   align-items: center; 
+   padding: 0 0 100px; 
+}
+
+/* a round pseudo-element marks each milestone. the translation centres its
+   full width, including borders, on the line rather than using a fixed offset.
+   the cream border separates the rust centre from the surrounding outline */
+.entry::before { 
+   content: ""; 
+   position: absolute; 
+   left: 50%; top: 90px; 
+   width: 12px; height: 12px; 
+   transform: translateX(-50%); 
+   border-radius: 50%; 
+   background: var(--rust); 
+   border: 3px solid var(--cream); 
+   outline: 1px solid var(--rust); 
+}
+
+/* alternate image/text positions on desktop, keeping both in the same row */
+.entry.reverse figure { 
+   grid-column: 2; 
+   grid-row: 1; 
+}
+
+.entry.reverse .entry-text { 
+   grid-column: 1; 
+   grid-row: 1; 
+}
+
+/* contain keeps the entire image visible rather than cropping the artwork */
+.entry img { 
+   max-height: 390px; 
+   object-fit: contain; 
+}
+
+.entry img.portrait { 
+   max-height: 460px; 
+}
+
+figcaption { 
+   margin-top: 16px; 
+   font-size: 11px; 
+   color: var(--muted); 
+   line-height: 1.5; 
+}
+
+.date { 
+   font-family: Arial, sans-serif; 
+   color: var(--rust); 
+   font-size: 21px; 
+   letter-spacing: 1px; 
+   line-height: 1.5; 
+}
+
+.date span { 
+   display: block; 
+   font-size: 10px; 
+   text-transform: uppercase; 
+   letter-spacing: 2px; 
+   margin-top: 7px; 
+}
+
+.entry h3 { 
+   font-size: 36px; 
+   margin: 19px 0; 
+}
+
+.entry-text > p:not(.date) { 
+   font-size: 15px; 
+}
+
+.entry-text .context { 
+   color: var(--muted); 
+   font-size: 11px !important; 
+}
+
+.source { 
+   display: inline-block; 
+   font-size: 12px; 
+   margin-top: 5px; 
+}
+
+.future { 
+   border-top: 2px dashed var(--rust); 
+   padding: 70px 30px; 
+   background: #eae5da; 
+}
+
+.future-header { 
+   text-align: center; 
+}
+
+.future h2 { 
+   font-size: clamp(36px, 5vw, 60px); 
+   margin: 20px 0; 
+}
+
+.future-header > p:last-child { 
+   color: var(--muted); 
+   font-size: 14px; 
+}
+
+/* three equally sized columns display the future scenarios side by side */
+.future-grid { 
+   display: grid; 
+   grid-template-columns: repeat(3, 1fr); 
+   gap: 55px; 
+   max-width: 980px; 
+   margin: 55px auto 40px; 
+}
+
+.future-grid h3 { 
+   font-size: 25px; 
+   margin: 8px 0 16px; 
+}
+
+.future-grid p:not(.date) { 
+   font-size: 14px; 
+}
+
+.future-grid .date { 
+   font-size: 16px; 
+   margin-bottom: 0; 
+}
+
+/* small abstract textile illustrations */
+.swatch { 
+   height: 170px; 
+   margin-bottom: 25px; 
+   position: relative; 
+   border: 1px dashed var(--muted); 
+   background: #ded8c9; 
+}
+
+/* flexbox centres three spans. repeated colour stripes suggest wound thread.
+   nth-child gives each individual span a different colour or rotation */
+.materials { 
+   display: flex; 
+   align-items: center; 
+   justify-content: center; 
+   gap: 15px; 
+}
+.materials span { 
+   width: 36px; 
+   height: 90px; 
+   border-radius: 40%;
+   background: repeating-linear-gradient(0deg, #203343 0 3px, #637583 3px 5px); 
+   transform: rotate(-12deg); 
+}
+
+.materials span:nth-child(2) { 
+   background: repeating-linear-gradient(0deg, #98432f 0 3px, #c18166 3px 5px); 
+   transform: rotate(8deg); 
+}
+
+.materials span:nth-child(3) { 
+   background: repeating-linear-gradient(0deg, #a38344 0 3px, #c9b37d 3px 5px); 
+}
+
+/* the swatch is a positioning container for a stitched replacement panel.
+   subtracting half the panel width from 50% centres it horizontally */
+.panels { 
+   background: #9cabb1; 
+}
+
+.panels span { 
+   position: absolute; 
+   width: 100px; 
+   height: 110px; 
+   top: 25px; 
+   left: calc(50% - 50px); 
+   background: #405e72; 
+   border: 2px dashed var(--cream); 
+   transform: rotate(-8deg); 
+}
+
+/* overlapping spans represent repairs accumulating on the same fabric */
+.stories { 
+   background: #b4bec1; 
+}
+
+.stories span { 
+   position: absolute; 
+   width: 75px; height: 75px; 
+   border: 2px dashed var(--cream); 
+   background: var(--rust); 
+   top: 25px; 
+   left: 15%; 
+   transform: rotate(-5deg); 
+}
+
+.stories span:nth-child(2) { 
+   background: #a38344; 
+   top: 55px; 
+   left: 40%; 
+   transform: rotate(7deg); 
+}
+
+.stories span:nth-child(3) { 
+   background: #405e72; 
+   top: 18px; 
+   left: 57%;
+   width: 55px; 
+   height: 55px; 
+}
+
+footer { 
+   text-align: center; 
+   max-width: 720px; 
+   margin: auto; 
+   padding: 65px 24px; 
+}
+
+/* on small screens thread moves left and all content stacks */
+/* these overrides apply only when the viewport is 700px wide or narrower */
+@media (max-width: 700px) {
+  .page-header { 
+      padding: 50px 22px 60px; 
+   }
+
+  h1 { 
+      letter-spacing: -2px; 
+   }
+
+  .subtitle { 
+      font-size: 20px; 
+   }
+
+  .introduction br { 
+      display: none; 
+   }
+
+  .timeline { 
+      padding: 0 24px 0 45px; 
+   }
+
+  .timeline::before { 
+      left: 20px; 
+   }
+   
+  .section-label { 
+      text-align: left; 
+      font-size: 9px; 
+      line-height: 1.8; 
+      margin-bottom: 40px; 
+   }
+   
+  .entry { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 26px; 
+      align-items: stretch; 
+      padding-bottom: 65px; 
+   }
+
+  /* articles begin 45px from the timeline’s left edge. moving the marker
+     back 25px places its centre at 20px, matching the mobile line above */
+  .entry::before { 
+      left: -25px; 
+      top: 12px; 
+   }
+
+  /* text comes first on phones, followed by its image and source credit */
+  .entry figure { 
+      order: 2; 
+   }
+
+  .entry-text { 
+      order: 1; 
+   }
+
+  .entry h3 { 
+      font-size: 32px; 
+   }
+
+  .entry img { 
+      max-height: 330px; 
+   }
+
+  .entry img.portrait { 
+      max-height: 390px;
+   }
+
+  .future {
+      padding: 50px 25px; 
+   }
+
+  .future-grid { 
+      grid-template-columns: 1fr; 
+      max-width: 360px; 
+      gap: 35px; 
+   }
+
+  .swatch { 
+      height: 170px; 
+   }
+}
+
+/* respect the user’s reduced-motion preference by disabling animated scrolling */
+@media (prefers-reduced-motion: reduce) { 
+   html { scroll-behavior: auto; } 
+}
+
+/* simplify browser printing: hide navigation, reduce spacing, and try to keep
+   entries together. colour output still depends on the browser’s print settings */
+@media print {
+  .scroll-link, .skip-link, footer > a { 
+      display: none; 
+   }
+
+  .page-header { 
+      padding: 20px; 
+   }
+
+  .entry { 
+      break-inside: avoid; 
+      padding-bottom: 35px; 
+   }
+
+  .future-grid article { 
+      break-inside: avoid; 
+   }
+
+  body { 
+      print-color-adjust: exact; 
+      -webkit-print-color-adjust: exact; 
+   }
+}
+
+.image-references { 
+   max-width: 900px; 
+   margin: auto; 
+   padding: 65px 25px 30px; 
+}
+
+.image-references h2 { 
+   font-size: 32px; 
+   margin: 0 0 30px; 
+}
+
+.reference-list p { 
+   padding-left: 2em; 
+   text-indent: -2em; 
+   margin-bottom: 24px; 
+   line-height: 2; 
+   font-size: 14px; 
+   overflow-wrap: anywhere; 
+   scroll-margin-top: 30px; 
+}
